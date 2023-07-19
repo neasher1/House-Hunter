@@ -44,7 +44,7 @@ const DashboardLayout = () => {
                       className="btn btn-outline my-4"
                       to="/dashboard/my-orders"
                     >
-                      Booked Houses
+                      booked houses
                     </Link>
                   </li>
                 </>
@@ -54,17 +54,17 @@ const DashboardLayout = () => {
                   <li>
                     <Link
                       className="btn btn-outline my-4"
-                      to="/dashboard/add-product"
+                      to="/dashboard/add-house"
                     >
-                      Add New House
+                      Add House
                     </Link>
                   </li>
                   <li>
                     <Link
                       className="btn btn-outline my-4"
-                      to="/dashboard/my-products"
+                      to="/dashboard/my-houses"
                     >
-                      My Houses
+                      My House
                     </Link>
                   </li>
                 </>

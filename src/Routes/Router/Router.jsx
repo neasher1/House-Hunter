@@ -7,6 +7,10 @@ import Register from "../../Pages/Register/Register";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import PrivateRoutes from "../../Routes/PrivateRoutes/PrivateRoutes";
+import AddHouseSell from "../../Pages/Dashboard/HouseOwner/AddHouseSell";
+import MyHouses from "../../Pages/Dashboard/HouseOwner/MyHouses";
+import MyHouseEdit from "../../Pages/Dashboard/HouseOwner/MyHouseEdit";
+import HouseOwnerRoutes from "../RoleRoutes/HouseOwnerRoutes";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +44,34 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/add-house",
+        element: (
+          <HouseOwnerRoutes>
+            <AddHouseSell></AddHouseSell>
+          </HouseOwnerRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/my-houses",
+        element: (
+          <HouseOwnerRoutes>
+            <MyHouses></MyHouses>
+          </HouseOwnerRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/edit-house/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/my-houses/${params.id}`).then((res) =>
+            res.json()
+          ),
+        element: (
+          <HouseOwnerRoutes>
+            <MyHouseEdit></MyHouseEdit>
+          </HouseOwnerRoutes>
+        ),
       },
     ],
   },
