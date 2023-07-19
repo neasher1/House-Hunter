@@ -21,8 +21,6 @@ export const UserProvider = ({ children }) => {
     setCurrentUser(user);
     setLoading(false);
   };
-  console.log(currentUser);
-  console.log(`http://localhost:5000/currentUser?email=${currentUser}`);
 
   useEffect(() => {
     fetchUser();
@@ -38,7 +36,6 @@ export const UserProvider = ({ children }) => {
     fetch(`http://localhost:5000/currentUser?email=${currentUser}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.email) {
           setUserAndLoading(data.email);
           setLoading(false);
@@ -52,8 +49,16 @@ export const UserProvider = ({ children }) => {
       });
   };
 
+  const logoutUser = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("currentUser");
+    setCurrentUser(null);
+  };
+
   return (
-    <UserContext.Provider value={{ setUserAndLoading, currentUser, loading }}>
+    <UserContext.Provider
+      value={{ setUserAndLoading, currentUser, loading, logoutUser }}
+    >
       {children}
     </UserContext.Provider>
   );

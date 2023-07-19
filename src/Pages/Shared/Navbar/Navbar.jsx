@@ -1,11 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
 import { MdOutlineDashboardCustomize } from "react-icons/md";
+import UserContext from "../../../contexts/UserContext";
+import { useContext } from "react";
 
 const Navbar = () => {
+  const { currentUser, logoutUser } = useContext(UserContext);
   const location = useLocation();
-  // const handleLogOut = () =>{
-
-  // }
+  const handleLogOut = () => {
+    logoutUser();
+  };
 
   const menuItems = (
     <>
@@ -18,21 +21,20 @@ const Navbar = () => {
       <li>
         <Link to="/blogs">Blogs</Link>
       </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-      <li>
-        <Link to="/register">Register</Link>
-      </li>
-      {/* {
-            user?.uid ?
-                <li><Link onClick={handleLogOut}>Sign Out</Link></li>
-                :
-                <>
-                    <li><Link to='/login'>Login</Link></li>
-                    <li><Link to='/register'>Register</Link></li>
-                </>
-        } */}
+      {currentUser ? (
+        <li>
+          <Link onClick={handleLogOut}>Sign Out</Link>
+        </li>
+      ) : (
+        <>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
