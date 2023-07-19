@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { MdOutlineDashboardCustomize } from "react-icons/md";
 
 const Navbar = () => {
+  const location = useLocation();
   // const handleLogOut = () =>{
 
   // }
@@ -71,13 +73,15 @@ const Navbar = () => {
         </div>
 
         <div>
-          {/* {
-              ((location.pathname === '/dashboard') || (location.pathname.startsWith('/dashboard/'))) &&
-
-              <div className="drawer-content block lg:hidden">
-                  <label htmlFor="dashboard-drawer" className="btn btn-primary drawer-button"><MdOutlineDashboardCustomize className='text-2xl text-white' /></label>
-              </div>
-          } */}
+          {(location.pathname === "/dashboard" ||
+            location.pathname.startsWith("/dashboard/")) && (
+            <label
+              htmlFor="dashboard-drawer"
+              className="btn btn-primary drawer-button lg:hidden"
+            >
+              <MdOutlineDashboardCustomize className="text-2xl text-white" />
+            </label>
+          )}
         </div>
       </div>
     </div>

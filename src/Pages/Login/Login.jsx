@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
 
 const Login = () => {
   const {
@@ -12,19 +14,23 @@ const Login = () => {
   // const location = useLocation();
   // const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
+  const { setUserAndLoading } = useContext(UserContext);
 
-  const handleLogin = (data, event) => {
-    console.log(data);
-    console.log(event);
+  const handleLogin = (data) => {
     const email = data.email;
-    const password = data.password;
+    // const password = data.password;
+
+    const user = {
+      email: data.email,
+      password: data.password,
+    };
 
     fetch("http://localhost:5000/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(user),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -37,6 +43,7 @@ const Login = () => {
                 localStorage.setItem("accessToken", data.accessToken);
                 navigate("/");
                 toast.success("user login");
+                setUserAndLoading(email);
               }
             });
         } else {

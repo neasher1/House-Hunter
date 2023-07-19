@@ -1,6 +1,8 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
+import UserContext from "../../contexts/UserContext";
 
 const Register = () => {
   const {
@@ -9,6 +11,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  const { setUserAndLoading } = useContext(UserContext);
 
   const handleSignUp = (data) => {
     const user = {
@@ -18,6 +21,8 @@ const Register = () => {
       userPhn: data.phnNumber,
       role: data.role,
     };
+
+    const email = data.email;
 
     fetch("http://localhost:5000/register", {
       method: "POST",
@@ -38,6 +43,7 @@ const Register = () => {
                 localStorage.setItem("accessToken", data.accessToken);
                 toast.success("user registered");
                 navigate("/");
+                setUserAndLoading(email);
               }
             });
         } else {
