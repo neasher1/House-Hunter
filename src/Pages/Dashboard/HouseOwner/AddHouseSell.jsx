@@ -75,11 +75,11 @@ const AddHouseSell = () => {
               <div className="form-control w-full max-w-xs">
                 <input
                   {...register("name", {
-                    required: "Please provided product your name",
+                    required: "Please provided name",
                   })}
                   type="text"
                   className="input input-bordered w-full max-w-xs"
-                  placeholder="Your Name"
+                  placeholder="Name of House"
                 />
                 {errors.name && (
                   <span className="text-error">{errors.name.message}</span>

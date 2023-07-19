@@ -42,7 +42,7 @@ const DashboardLayout = () => {
                   <li>
                     <Link
                       className="btn btn-outline my-4"
-                      to="/dashboard/my-orders"
+                      to="/dashboard/my-book-houses"
                     >
                       booked houses
                     </Link>

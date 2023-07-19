@@ -11,6 +11,8 @@ import AddHouseSell from "../../Pages/Dashboard/HouseOwner/AddHouseSell";
 import MyHouses from "../../Pages/Dashboard/HouseOwner/MyHouses";
 import MyHouseEdit from "../../Pages/Dashboard/HouseOwner/MyHouseEdit";
 import HouseOwnerRoutes from "../RoleRoutes/HouseOwnerRoutes";
+import HouseRenterRoutes from "../RoleRoutes/HouseRenterRoutes";
+import BookHouses from "../../Pages/Home/Houses/BookHouses";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
           <HouseOwnerRoutes>
             <MyHouseEdit></MyHouseEdit>
           </HouseOwnerRoutes>
+        ),
+      },
+      {
+        path: "/dashboard/my-book-houses",
+        element: (
+          <HouseRenterRoutes>
+            <BookHouses></BookHouses>
+          </HouseRenterRoutes>
         ),
       },
     ],
